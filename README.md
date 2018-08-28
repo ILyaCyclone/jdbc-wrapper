@@ -1,4 +1,4 @@
-Представлены 5 классов. Логика находится в MyCallableStatementWrapper и MyDriverWrapper. 
+Представлены 5 классов. Логика находится в MyCallableStatementWrapper и MyDriverWrapper, остальные просто делегируют методы.
 
 Для подключения к бд через данный инструмент необходимо в jndi datasource указать 
 driverClassName="ru.unisuite.jdbc.wrapper.MyDriverWrapper". 
