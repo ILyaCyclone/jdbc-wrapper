@@ -3,6 +3,9 @@ package ru.unisuite.jdbc.wrapper;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
@@ -25,6 +28,8 @@ import java.sql.Timestamp;
 
 public class MyCallableStatementWrapper extends MyPreparedStatementWrapper implements CallableStatement {
 
+	private Logger logger = Logger.getLogger(MyCallableStatementWrapper.class.getName());
+	
 	private CallableStatement callableStatement;
 
 	public MyCallableStatementWrapper(CallableStatement statement) {
@@ -37,9 +42,9 @@ public class MyCallableStatementWrapper extends MyPreparedStatementWrapper imple
 		try {
 			result = callableStatement.execute();
 		} catch (SQLException e) {
-			System.out.println("code:" + e.getErrorCode() + ", sql state: " + e.getSQLState());
+			logger.log(Level.WARNING, "code:" + e.getErrorCode() + ", sql state: " + e.getSQLState(), e);
 			if (reExecutionRequired(e)) {
-				System.out.println("re-executing package ");
+				logger.log(Level.INFO, "re-executing package ");
 				result = callableStatement.execute();
 			} else
 				throw e;
@@ -52,9 +57,9 @@ public class MyCallableStatementWrapper extends MyPreparedStatementWrapper imple
 		try {
 			result = callableStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("code:" + e.getErrorCode() + ", sql state: " + e.getSQLState());
+			logger.log(Level.WARNING, "code:" + e.getErrorCode() + ", sql state: " + e.getSQLState(), e);
 			if (reExecutionRequired(e)) {
-				System.out.println("re-executing package ");
+				logger.log(Level.INFO, "re-executing package ");
 				result = callableStatement.executeUpdate();
 			} else
 				throw e;
