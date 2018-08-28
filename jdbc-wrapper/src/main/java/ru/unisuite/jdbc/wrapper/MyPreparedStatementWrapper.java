@@ -23,6 +23,10 @@ import java.sql.Ref;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+/**
+* delegator for PreparedStatement class
+*/
+
 public class MyPreparedStatementWrapper extends MyStatementWrapper implements PreparedStatement {
 
 	private PreparedStatement preparedStatement;

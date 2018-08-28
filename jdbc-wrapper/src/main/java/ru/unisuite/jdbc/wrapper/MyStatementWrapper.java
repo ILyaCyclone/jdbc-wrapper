@@ -6,6 +6,10 @@ import java.sql.SQLWarning;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
+/**
+* delegator for Statement class
+*/
+
 public class MyStatementWrapper implements Statement {
 	Statement statement;
 

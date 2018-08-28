@@ -19,6 +19,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
+/**
+* delegator for Connection class
+*/
+
 public class MyConnectionWrapper implements Connection {
 
 	private Connection connection;
