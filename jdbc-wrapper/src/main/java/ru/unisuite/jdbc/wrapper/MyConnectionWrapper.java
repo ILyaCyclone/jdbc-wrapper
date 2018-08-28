@@ -33,7 +33,7 @@ public class MyConnectionWrapper implements Connection {
 
 	public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency) throws SQLException {
 		return connection.prepareCall(sql, resultSetType, resultSetConcurrency);
-	}
+	} 
 
 	public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency,
 			int resultSetHoldability) throws SQLException {
