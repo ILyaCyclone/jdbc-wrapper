@@ -23,7 +23,7 @@ public final class MyDriverWrapper implements Driver {
 			DriverManager.registerDriver(new MyDriverWrapper());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 	public Connection connect(String url, Properties info) throws SQLException {
