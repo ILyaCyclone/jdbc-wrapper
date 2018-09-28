@@ -41,6 +41,7 @@
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>${ojdbc.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
