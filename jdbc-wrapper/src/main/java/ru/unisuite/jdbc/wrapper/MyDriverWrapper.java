@@ -14,7 +14,7 @@ import oracle.jdbc.OracleDriver;
 public final class MyDriverWrapper implements Driver {
 	private static final DriverPropertyInfo[] DRIVER_PROPERTY_INFO = new DriverPropertyInfo[0];
 
-//	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:dbj2ee:orawrapper:";
+	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:dbj2ee:orawrapper:";
 
 	private static Driver driver = new OracleDriver();
 
@@ -27,8 +27,8 @@ public final class MyDriverWrapper implements Driver {
 	}
 
 	public Connection connect(String url, Properties info) throws SQLException {
-//		String myUrl = url.replaceFirst(ACCEPTABLE_URL_PREFIX, "jdbc:oracle:thin:");
-		return new MyConnectionWrapper(driver.connect(url, info));
+		String myUrl = url.replaceFirst(ACCEPTABLE_URL_PREFIX, "jdbc:oracle:thin:");
+		return new MyConnectionWrapper(driver.connect(myUrl, info));
 	}
 
 	public DriverPropertyInfo[] getPropertyInfo(String url, Properties info) throws SQLException {
@@ -40,7 +40,7 @@ public final class MyDriverWrapper implements Driver {
 	}
 
 	public boolean acceptsURL(String url) throws SQLException {
-		return url != null;// && url.startsWith(ACCEPTABLE_URL_PREFIX);
+		return url != null && url.startsWith(ACCEPTABLE_URL_PREFIX);
 	}
 
 	public int getMinorVersion() {
