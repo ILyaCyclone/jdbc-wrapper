@@ -1,4 +1,5 @@
 Представлены 5 классов. Класс MyConnectionWrapper выдает обернутые версии Statement, CallableStatement и PreparedStatement. Вышеперечисленные классы в методах execute, executeUpdate и executeQuery, при возникновении ошибки ORA-04068, повторно исполняют выполнение метода.
+Oracle jdbc библиотека должна быть в зависимостях проекта.
 
 Для подключения к бд через данный инструмент необходимо в jndi datasource указать 
 driverClassName="ru.unisuite.jdbc.wrapper.MyDriverWrapper". 
