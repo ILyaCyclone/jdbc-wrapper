@@ -1,24 +1,8 @@
-Представлены 5 классов. Логика находится в MyCallableStatementWrapper и MyDriverWrapper, остальные просто делегируют методы.
+Представлены 5 классов. Класс MyConnectionWrapper выдает обернутые версии Statement, CallableStatement и PreparedStatement. Вышеперечисленные классы в методах execute, executeUpdate и executeQuery, при возникновении ошибки ORA-04068, повторно исполняют выполнение метода.
 
 Для подключения к бд через данный инструмент необходимо в jndi datasource указать 
 driverClassName="ru.unisuite.jdbc.wrapper.MyDriverWrapper". 
 
-Существует возможность изменения url'а для подключения к бд. В классе MyDriverWrapper создается переменная ACCEPTABLE_URL_PREFIX, указывающая префикс, который заменяет "jdbc:oracle:thin:":
-
-	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:dbj2ee:orawrapper:";
-
-В этом же классе необходимо заменить введенный url на необходимый, для подключения к oracle бд:
-
-	String myUrl = url.replaceFirst(ACCEPTABLE_URL_PREFIX, "jdbc:oracle:thin:");
-
-Также, необходимо изменить условие в методе acceptURL следующим образом:
-
-	public boolean acceptsURL(String url) throws SQLException {
-
-		return url != null && url.startsWith(ACCEPTABLE_URL_PREFIX);
-	
-	}
-
-Сейчас данная возможность закомментирована.
+Также, необходимо изменить url для подключения к бд. Часть урла "jdbc:oracle:thin:" необходимо заменить на "jdbc:dbj2ee:orawrapper:". Это необходимо для того, чтобы при работе программы был выбран именно обернутый драйвер, а не ojdbc. 
 
 Решение было взято с сайта http://dbj2ee.blogspot.com/2007/10/dealing-with-oracle-plsql-error-ora.html
