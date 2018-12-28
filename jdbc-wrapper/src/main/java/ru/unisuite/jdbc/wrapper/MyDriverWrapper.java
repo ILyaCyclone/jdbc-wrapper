@@ -14,13 +14,14 @@ import oracle.jdbc.OracleDriver;
 public final class MyDriverWrapper implements Driver {
 	private static final DriverPropertyInfo[] DRIVER_PROPERTY_INFO = new DriverPropertyInfo[0];
 
-	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:dbj2ee:orawrapper:";
+	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:oracle:thin:unisuite-wrapper";
 
-	private static Driver driver = new OracleDriver();
+	private static Driver driver;
 
 	static {
 		try {
 			DriverManager.registerDriver(new MyDriverWrapper());
+			driver = new OracleDriver();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
