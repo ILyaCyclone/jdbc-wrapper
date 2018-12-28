@@ -5,6 +5,6 @@ Oracle jdbc библиотека должна быть в зависимостя
 Для подключения к бд через данный инструмент необходимо в jndi datasource указать 
 driverClassName="ru.unisuite.jdbc.wrapper.MyDriverWrapper". 
 
-Также, необходимо изменить url для подключения к бд. Часть урла "jdbc:oracle:thin:" необходимо заменить на "jdbc:dbj2ee:orawrapper:". Это необходимо для того, чтобы при работе программы был выбран именно обернутый драйвер, а не ojdbc. 
+Также, необходимо изменить url для подключения к бд. Часть урла "jdbc:oracle:thin:" необходимо заменить на "jdbc:oracle:thin:unisuite-wrapper:". Это необходимо для того, чтобы при работе программы был выбран именно обернутый драйвер, а не ojdbc. 
 
 Решение было взято с сайта http://dbj2ee.blogspot.com/2007/10/dealing-with-oracle-plsql-error-ora.html
