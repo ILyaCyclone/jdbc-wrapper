@@ -27,7 +27,7 @@ import java.sql.Timestamp;
 
 /**
 * delegator for PreparedStatement class
-* this class overrides three method: execute, executeQuery and executeUpdate
+* this class overrides three methods: execute, executeQuery and executeUpdate
 * other methods were delegated
 */
 

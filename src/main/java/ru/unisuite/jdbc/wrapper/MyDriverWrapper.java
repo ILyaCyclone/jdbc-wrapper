@@ -7,6 +7,7 @@ import java.sql.DriverPropertyInfo;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import oracle.jdbc.OracleDriver;
@@ -16,14 +17,17 @@ public final class MyDriverWrapper implements Driver {
 
 	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:unisuite-wrapper:thin:";
 
+	private static Logger logger = Logger.getLogger(MyDriverWrapper.class.getName());
+	
 	private static Driver driver;
 
 	static {
 		try {
 			DriverManager.registerDriver(new MyDriverWrapper());
 			driver = new OracleDriver();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			logger.log(Level.SEVERE, "Can't registrate MyDriverWrapper. " + e.toString(), e);
+			throw new RuntimeException("Can't registrate MyDriverWrapper. " + e.toString(), e);
 		} 
 	}
 

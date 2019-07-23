@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 /**
 * delegator for Statement class
-* this class overrides three method: execute, executeQuery and executeUpdate
+* this class overrides three methods: execute, executeQuery and executeUpdate
 * other methods were delegated
 */
 
