@@ -32,13 +32,13 @@ import java.sql.Timestamp;
 * other methods were delegated
 */
 
-public class MyCallableStatementWrapper extends MyPreparedStatementWrapper implements CallableStatement {
+public class RetryStateDiscardedCallableStatementWrapper extends RetryStateDiscardedPreparedStatementWrapper implements CallableStatement {
 
-	private Logger logger = Logger.getLogger(MyCallableStatementWrapper.class.getName());
+	private Logger logger = Logger.getLogger(RetryStateDiscardedCallableStatementWrapper.class.getName());
 	
 	private CallableStatement callableStatement;
 
-	public MyCallableStatementWrapper(CallableStatement statement) {
+	public RetryStateDiscardedCallableStatementWrapper(CallableStatement statement) {
 		super(statement);
 		this.callableStatement = (CallableStatement) statement;
 	}

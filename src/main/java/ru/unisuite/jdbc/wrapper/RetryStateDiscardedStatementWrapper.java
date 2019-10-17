@@ -14,13 +14,13 @@ import java.sql.ResultSet;
 * other methods were delegated
 */
 
-public class MyStatementWrapper implements Statement {
+public class RetryStateDiscardedStatementWrapper implements Statement {
 		
 	private Statement statement;
 	
-	private Logger logger = Logger.getLogger(MyStatementWrapper.class.getName());
+	private Logger logger = Logger.getLogger(RetryStateDiscardedStatementWrapper.class.getName());
 
-	public MyStatementWrapper(Statement statement) {
+	public RetryStateDiscardedStatementWrapper(Statement statement) {
 		this.statement = statement;
 	}
 	

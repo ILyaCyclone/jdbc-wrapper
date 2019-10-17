@@ -12,28 +12,28 @@ import java.util.logging.Logger;
 
 import oracle.jdbc.OracleDriver;
 
-public final class MyDriverWrapper implements Driver {
+public final class RetryStateDiscardedDriverWrapper implements Driver {
 	private static final DriverPropertyInfo[] DRIVER_PROPERTY_INFO = new DriverPropertyInfo[0];
 
 	public static final String ACCEPTABLE_URL_PREFIX = "jdbc:unisuite-wrapper:thin:";
 
-	private static Logger logger = Logger.getLogger(MyDriverWrapper.class.getName());
+	private static Logger logger = Logger.getLogger(RetryStateDiscardedDriverWrapper.class.getName());
 	
 	private static Driver driver;
 
 	static {
 		try {
-			DriverManager.registerDriver(new MyDriverWrapper());
+			DriverManager.registerDriver(new RetryStateDiscardedDriverWrapper());
 			driver = new OracleDriver();
 		} catch (SQLException e) {
-			logger.log(Level.SEVERE, "Can't registrate MyDriverWrapper. " + e.toString(), e);
-			throw new RuntimeException("Can't registrate MyDriverWrapper. " + e.toString(), e);
+			logger.log(Level.SEVERE, "Can't registrate RetryStateDiscardedDriverWrapper. " + e.toString(), e);
+			throw new RuntimeException("Can't registrate RetryStateDiscardedDriverWrapper. " + e.toString(), e);
 		} 
 	}
 
 	public Connection connect(String url, Properties info) throws SQLException {
 		String myUrl = url.replaceFirst(ACCEPTABLE_URL_PREFIX, "jdbc:oracle:thin:");
-		return new MyConnectionWrapper(driver.connect(myUrl, info));
+		return new RetryStateDiscardedConnectionWrapper(driver.connect(myUrl, info));
 	}
 
 	public DriverPropertyInfo[] getPropertyInfo(String url, Properties info) throws SQLException {

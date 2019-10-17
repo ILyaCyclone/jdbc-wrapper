@@ -31,13 +31,13 @@ import java.sql.Timestamp;
 * other methods were delegated
 */
 
-public class MyPreparedStatementWrapper extends MyStatementWrapper implements PreparedStatement {
+public class RetryStateDiscardedPreparedStatementWrapper extends RetryStateDiscardedStatementWrapper implements PreparedStatement {
 
 	private PreparedStatement preparedStatement;
 	
-	private Logger logger = Logger.getLogger(MyPreparedStatementWrapper.class.getName());
+	private Logger logger = Logger.getLogger(RetryStateDiscardedPreparedStatementWrapper.class.getName());
 
-	public MyPreparedStatementWrapper(PreparedStatement preparedStatement) {
+	public RetryStateDiscardedPreparedStatementWrapper(PreparedStatement preparedStatement) {
 		super(preparedStatement);
 		this.preparedStatement = preparedStatement;
 	}
