@@ -1,10 +1,13 @@
-Представлены 5 классов. Класс RetryStateDiscardedDriverWrapper выдает обернутые версии Statement, CallableStatement и PreparedStatement. Вышеперечисленные классы в методах execute, executeUpdate и executeQuery, при возникновении ошибки ORA-04068, повторно исполняют выполнение метода.
+JDBC Driver RetryDriver по сути своей является обёрткой над Oracle JDBC Driver со следующим дополнительным поведением:  
+при возникновении ошибки "ORA-04068: existing state of packages has been discarded" ("существующее состояние было сброшено")
+основные методы (execute, executeQuery, executeUpdate и некоторые другие) выполняются ещё 1 раз.
 
-Oracle jdbc библиотека должна быть в зависимостях проекта.
+Oracle JDBC библиотека должна быть в зависимостях проекта.
 
-Для подключения к бд через данный инструмент необходимо в jndi datasource указать 
-driverClassName="ru.unisuite.jdbc.wrapper.RetryStateDiscardedDriverWrapper". 
+Для использование RetryDriver при создании JNDU Datasource необходимо: 
+- в Driver Class Name указать `ru.unisuite.jdbc.driver.retry.RetryDriver`
+- в JDBC URL часть значения `jdbc:oracle:thin:` заменить на `jdbc:unisuite-retry:thin:`
 
-Также, необходимо изменить url для подключения к бд. Часть урла "jdbc:oracle:thin:" необходимо заменить на "jdbc:unisuite-wrapper:thin:". Это необходимо для того, чтобы при работе программы был выбран именно обернутый драйвер, а не ojdbc. 
+Это необходимо для того, чтобы в runtime при выборе реализации JDBC был выбран RetryDriver, а не Oracle Driver. 
 
-Решение было взято с сайта http://dbj2ee.blogspot.com/2007/10/dealing-with-oracle-plsql-error-ora.html
+Решение основано на статье [Dealing with Oracle PL/SQL Error "ORA-04068: existing state of packages has been discarded" Transparently in Java/JDBC](http://dbj2ee.blogspot.com/2007/10/dealing-with-oracle-plsql-error-ora.html).
