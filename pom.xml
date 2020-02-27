@@ -9,9 +9,9 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ru.unisuite.jdbc.driver</groupId>
-	<artifactId>retry-driver</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<groupId>ru.unisuite.jdbc.wrapper</groupId>
+	<artifactId>retry-jdbc-driver</artifactId>
+	<version>0.2.1-SNAPSHOT</version>
 
 	<properties>
 		<encoding>UTF-8</encoding>
